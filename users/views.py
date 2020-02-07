@@ -1,10 +1,9 @@
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-
-from .forms import CustomUserCreationForm
+from users.models import User
 
 
-class SignUpView(CreateView):
-    form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'signup.html'
+def signup(request, email, user_type, password):
+    user = User.objects.create_user(email, user_type, password)
+    user.is_active = False
+    user.save()
+    return user
+

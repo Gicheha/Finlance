@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content%}
+    <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Sign Up</h1>
+            <div class="custom-breadcrumbs">
+              <a href="#">Home</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Sign Up</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <h2 class="mb-4">Sign Up To Finlance</h2>
+            <form action="{% url 'employee-signup-form' %}" class="p-4 border rounded" method="post">
+              {% csrf_token %}
+
+              {% if error %}
+                <p style="color:red;"> Passwords don't match, Please try again </p>
+              {% endif %}
+
+              {% for field in form %}
+                <div class="row form-group">
+                  <div class="col-md-12 mb-3 mb-md-0">
+                    <!--<label class="text-black" for="fname">First Name</label>-->
+                    <!--<input type="text" name="{{first_name}}" maxlength="32" class="form-control" placeholder="First Name" required="" id="id_first_name">-->
+                    {{ field }}
+                  </div>
+                </div>
+              {% endfor %}
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Sign Up" class="btn px-4 btn-primary text-white">
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

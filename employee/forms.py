@@ -5,10 +5,10 @@ from employee.models import *
 class SignUpForm(forms.ModelForm):
     class Meta:
         model = EmployeeProfile
-        exclude = ['user', 'country', 'city', 'profile_pic', 'status','is_suspended']
+        exclude = ['user', 'country', 'city', 'profile_pic', 'status', 'is_suspended']
 
     def __init__(self, *args, **kwargs):
-        super(SignUpForm, self).__init__(*args,**kwargs)
+        super(SignUpForm, self).__init__(*args, **kwargs)
 
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
@@ -18,7 +18,6 @@ class SignUpForm(forms.ModelForm):
         self.fields['id_number'].widget.attrs['placeholder'] = 'National ID Number'
         self.fields['email'].widget.attrs['placeholder'] = 'email'
 
-    accept_policy = forms.BooleanField(widget=forms.CheckboxInput())
     password1 = forms.CharField(min_length=8, max_length=100,
                                 widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
     password2 = forms.CharField(min_length=8, max_length=100, widget=forms.PasswordInput(
@@ -30,7 +29,8 @@ class SignUpForm(forms.ModelForm):
         if pw1 and pw2 and pw1 == pw2:
             return pw2
         else:
-            return True
+            pw2 = None
+            return pw2
 
 
 class UpdateProfileForm(forms.ModelForm):
@@ -55,6 +55,16 @@ class UpdateEducation(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
+        self.fields['start_date'] = forms.DateField(
+            label="The day you started",
+            widget=forms.SelectDateWidget
+        )
+
+        self.fields['end_date'] = forms.DateField(
+            label="The day you left",
+            widget=forms.SelectDateWidget
+        )
+
 
 class UpdateExperience(forms.ModelForm):
     class Meta:
@@ -67,6 +77,14 @@ class UpdateExperience(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
 
         self.fields['current_job'].widget.attrs['class'] = ''
+        self.fields['start_date'] = forms.DateField(
+            label="The day you started",
+            widget=forms.SelectDateWidget
+        )
+        self.fields['end_date'] = forms.DateField(
+            label="The day you left",
+            widget=forms.SelectDateWidget
+        )
 
 
 class UpdateEmployeeProficiency(forms.ModelForm):
@@ -96,7 +114,7 @@ class UpdateLanguage(forms.ModelForm):
         model = EmployeeLanguage
         exclude = ['user']
 
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
         super(UpdateLanguage, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'

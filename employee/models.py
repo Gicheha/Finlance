@@ -1,12 +1,12 @@
 from django.db import models
-from users.models import CustomUser
+from users.models import User
 from indexapp.constants import DEGREE_LEVEL, INDUSTRY_CATEGORIES, EMPLOYMENT_TYPES, COMPANY_SIZES, LANGUAGES
 from indexapp.constants import PROFICIENCY, STATUS
 
 
 # Create your models here.
 class EmployeeProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to='profile-pics', blank=True, default='profile-pics/profile.png')
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
@@ -22,7 +22,7 @@ class EmployeeProfile(models.Model):
 
 
 class EmployeeEducation(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     institution = models.CharField(max_length=500)
     study_field = models.CharField(max_length=500)
     certification = models.CharField(max_length=500, choices=DEGREE_LEVEL)
@@ -35,7 +35,7 @@ class EmployeeEducation(models.Model):
 
 
 class EmployeeProficiency(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     skill = models.CharField(max_length=32)
     proficiency = models.CharField(max_length=63, choices=PROFICIENCY)
     certified = models.BooleanField
@@ -45,7 +45,7 @@ class EmployeeProficiency(models.Model):
 
 
 class EmployeeExperience(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     company = models.CharField(max_length=500)
     company_homepage = models.URLField(blank=True)
     job_type = models.CharField(max_length=50, choices=EMPLOYMENT_TYPES)
@@ -62,7 +62,7 @@ class EmployeeExperience(models.Model):
 
 
 class EmployeeLanguage(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.CharField(max_length=50, choices=LANGUAGES)
     proficiency = models.CharField(max_length=50, choices=PROFICIENCY)
 
@@ -71,7 +71,7 @@ class EmployeeLanguage(models.Model):
 
 
 class EmployeeResume(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     cv = models.FileField(upload_to='cv')
     cover_letter = models.TextField()
 
