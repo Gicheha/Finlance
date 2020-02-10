@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'finlance.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'finlance',
         'USER': 'postgres',
         'PASSWORD': '2020Vision@254#',
