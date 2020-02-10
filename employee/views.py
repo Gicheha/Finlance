@@ -69,7 +69,7 @@ def update_education(request):
         # print(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('http://127.0.0.1:8000/employee/edit-profile/#education')
+            return redirect('employee-edit-profile')
         else:
             print(form.errors)
             return render(request, 'profile.html', {'education_error': form.errors})
@@ -85,7 +85,7 @@ def update_experience(request):
 
         if form.is_valid():
             form.save()
-            return redirect('http://127.0.0.1:8000/employee/edit-profile/#experience')
+            return redirect('employee-edit-profile')
         else:
             print(form.errors)
             return render(request, 'profile.html', {'experience_error': form.errors})
@@ -101,7 +101,7 @@ def update_resume(request):
 
         if form.is_valid():
             form.save()
-            return redirect('update-resume')
+            return redirect('employee-redirect-profile')
 
     return HttpResponse('error')
 
@@ -114,7 +114,7 @@ def update_language(request):
 
         if form.is_valid():
             form.save()
-            return redirect('update-language')
+            return redirect('employee-redirect-profile')
 
     return HttpResponse('error')
 
