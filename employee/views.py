@@ -154,7 +154,7 @@ def signup_form(request):
                 profile = form.save(commit=False)
                 profile.user = user
                 profile.save()
-                return redirect('index')
+                return redirect('signin')
         form = SignUpForm()
         return render(request, "signup.html", {'form': form, 'error': error})
 
