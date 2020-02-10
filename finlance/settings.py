@@ -25,7 +25,7 @@ SECRET_KEY = 'idahg7!l8bo_qtdq&6bq1l)_^qf%gtgcgu4!7-oz@jygt@bh!o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,12 +87,12 @@ WSGI_APPLICATION = 'finlance.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'finlance',
-        'USER': 'root',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'finlance2',
+        'USER': 'finlancer',
         'PASSWORD': 'gicheha',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'HOST': '172.17.0.1',
+        'PORT': '5432'
     }
 }
 
