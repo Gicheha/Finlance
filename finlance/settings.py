@@ -85,14 +85,21 @@ WSGI_APPLICATION = 'finlance.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# pg-docker 172.17.0.1
+# port 5432
+# password: gicheha
+# user: finlancer
+# database: finlance2
+# 'ENGINE': 'django.db.backends.postgresql_psycopg2'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'finlance2',
-        'USER': 'finlancer',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'finlance',
+        'USER': 'root',
         'PASSWORD': 'gicheha',
-        'HOST': '172.17.0.1',
-        'PORT': '5432'
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 

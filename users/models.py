@@ -1,5 +1,3 @@
-from abc import ABC
-
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from django.db import models
 

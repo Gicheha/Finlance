@@ -136,6 +136,7 @@ def signup_page(request):
 
 
 def signup_form(request):
+    error = False
     if request.method == 'POST':
         form = SignUpForm(request.POST)
 
@@ -155,7 +156,7 @@ def signup_form(request):
                 profile.save()
                 return redirect('index')
         form = SignUpForm()
-        return render(request, "signup.html", {'form': form, 'error': False})
+        return render(request, "signup.html", {'form': form, 'error': error})
 
 
 @login_required()
