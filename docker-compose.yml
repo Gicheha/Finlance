@@ -3,6 +3,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: ng01
+    network_mode: bridge
     ports:
       - "8181:8181"
     depends_on:
