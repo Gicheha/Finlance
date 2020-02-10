@@ -96,9 +96,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'finlance',
-        'USER': 'root',
-        'PASSWORD': 'gicheha',
-        'HOST': 'localhost',
+        'USER': 'postgres',
+        'PASSWORD': '2020Vision@254#',
+        'HOST': '167.172.46.206',
         'PORT': '3306'
     }
 }
