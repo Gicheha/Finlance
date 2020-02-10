@@ -96,12 +96,12 @@ def update_experience(request):
 @login_required()
 def update_resume(request):
     if request.method == 'POST':
-        instance, created = UpdateResume.objects.get_or_create(user = request.user)
+        instance = EmployeeResume(user=request.user)
         form = UpdateResume(request.POST, request.FILES, instance=instance)
 
         if form.is_valid():
             form.save()
-            return redirect('employee-redirect-profile')
+            return redirect('employee-edit-profile')
 
     return HttpResponse('error')
 
@@ -114,7 +114,7 @@ def update_language(request):
 
         if form.is_valid():
             form.save()
-            return redirect('employee-redirect-profile')
+            return redirect('employee-edit-profile')
 
     return HttpResponse('error')
 

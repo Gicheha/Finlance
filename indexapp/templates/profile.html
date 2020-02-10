@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 col-lg-12 mb-5" id="edit_self">
+        <div class="col-md-12 col-lg-12 mb-5">
           <form enctype="multipart/form-data" class="p-5 bg-white" style="border-radius:25px;" action="{% url 'update-profile' %}" method="post">
               {% csrf_token %}
 
@@ -79,7 +79,7 @@
   </div>
 
   <div class="container">
-    <div class="row" id="edit_education">
+    <div class="row">
       <div class="col-md-12 col-lg-12 mb-5">
         <form class="p-5 bg-white" style="border-radius:25px;" action="{% url 'update-education' %}" method="post">
           {% csrf_token %}
