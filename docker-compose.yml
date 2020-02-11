@@ -12,6 +12,6 @@ services:
     build: .
     container_name: dg01
     network_mode: host
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && gunicorn finlance.wsgi -b 0.0.0.0:8181"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn finlance.wsgi -b 0.0.0.0:8181"
     expose:
       - "8181"
