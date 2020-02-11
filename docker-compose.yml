@@ -18,4 +18,4 @@ services:
     expose:
       - "8000"
     volumes:
-      - ./static/:/static
+      - ./static/:/src/static
