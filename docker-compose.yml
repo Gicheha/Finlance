@@ -8,8 +8,7 @@ services:
       - "8000:8000"
     depends_on:
       - web
-    volumes:
-      - ./static/:/static
+
   web:
     build: .
     container_name: dg01
@@ -17,5 +16,3 @@ services:
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn finlance.wsgi -b 0.0.0.0:8181"
     expose:
       - "8000"
-    volumes:
-      - ./static/:/src/static
