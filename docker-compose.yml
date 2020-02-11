@@ -6,10 +6,6 @@ services:
     network_mode: host
     ports:
       - "8000:8000"
-    volumes:
-      - ./src:/src
-      - ./config/nginx:/etc/nginx/conf.d
-      - /static:/static
     depends_on:
       - web
   web:
@@ -19,6 +15,3 @@ services:
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && gunicorn finlance.wsgi -b 0.0.0.0:8181"
     expose:
       - "8000"
-    volumes:
-      - ./src:/src
-      - /static:/static
