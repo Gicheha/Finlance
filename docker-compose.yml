@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: ng01
-    network_mode: bridge
+    network_mode: host
     ports:
       - "8181:8181"
     depends_on:
@@ -12,7 +12,7 @@ services:
   web:
     build: .
     container_name: dg01
-    network_mode: bridge
+    network_mode: host
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && gunicorn finlance.wsgi -b 0.0.0.0:8181"
     expose:
       - "8181"
