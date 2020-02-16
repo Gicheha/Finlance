@@ -1,6 +1,8 @@
 from django import forms
 from employee.models import *
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class SignUpForm(forms.ModelForm):
     class Meta:
@@ -43,7 +45,7 @@ class UpdateProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateProfileForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'single-input'
         self.fields['profile_pic'].widget.attrs['id'] = 'profile-pic'
 
 
@@ -51,42 +53,33 @@ class UpdateEducation(forms.ModelForm):
     class Meta:
         model = EmployeeEducation
         exclude = ['user']
+        widgets = {
+            'start_date': DateInput(),
+            'end_date': DateInput()
+        }
 
     def __init__(self, *args, **kwargs):
         super(UpdateEducation, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
-
-        self.fields['start_date'] = forms.DateField(
-            label="The day you started",
-            widget=forms.SelectDateWidget
-        )
-
-        self.fields['end_date'] = forms.DateField(
-            label="The day you left",
-            widget=forms.SelectDateWidget
-        )
+            field.widget.attrs['class'] = 'single-input'
+            field.widget.attrs['type'] = 'date'
 
 
 class UpdateExperience(forms.ModelForm):
     class Meta:
         model = EmployeeExperience
         exclude = ['user']
+        widgets = {
+            'start_date': DateInput(),
+            'end_date': DateInput()
+        }
 
     def __init__(self, *args, **kwargs):
         super(UpdateExperience, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'single-input'
 
         self.fields['current_job'].widget.attrs['class'] = ''
-        self.fields['start_date'] = forms.DateField(
-            label="The day you started",
-            widget=forms.SelectDateWidget
-        )
-        self.fields['end_date'] = forms.DateField(
-            label="The day you left",
-            widget=forms.SelectDateWidget
-        )
 
 
 class UpdateEmployeeProficiency(forms.ModelForm):
@@ -97,7 +90,7 @@ class UpdateEmployeeProficiency(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateEmployeeProficiency, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'single-input'
 
 
 class UpdateResume(forms.ModelForm):
@@ -108,7 +101,7 @@ class UpdateResume(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateResume, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'single-input'
 
 
 class UpdateLanguage(forms.ModelForm):
@@ -119,5 +112,5 @@ class UpdateLanguage(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateLanguage, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'single-input'
 
