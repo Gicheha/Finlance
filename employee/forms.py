@@ -11,17 +11,19 @@ class SignUpForm(forms.ModelForm):
         super(SignUpForm, self).__init__(*args, **kwargs)
 
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'single-input'
 
         self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
         self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
         self.fields['id_number'].widget.attrs['placeholder'] = 'National ID Number'
         self.fields['email'].widget.attrs['placeholder'] = 'email'
 
-    password1 = forms.CharField(min_length=8, max_length=100,
-                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
-    password2 = forms.CharField(min_length=8, max_length=100, widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'repeat password'}))
+    password1 = forms.CharField(min_length=8, 
+                                max_length=100,
+                                widget=forms.PasswordInput(attrs={'class': '', 'placeholder': 'password'}))
+    password2 = forms.CharField(min_length=8,
+                                max_length=100,
+                                widget=forms.PasswordInput(attrs={'class': '', 'placeholder': 'repeat password'}))
 
     def clean_password(self):
         pw1 = self.cleaned_data.get('password1')

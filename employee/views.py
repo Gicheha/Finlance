@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import JsonResponse, HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 
 from users.views import signup
 from employee.forms import *
@@ -39,7 +40,7 @@ def edit_profile(request):
         'company_sizes': COMPANY_SIZES
     }
 
-    return render(request, 'profile.html', context)
+    return render(request, "edit_profile.html", context)
 
 
 @login_required()

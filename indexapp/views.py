@@ -35,14 +35,14 @@ def sign_in(request):
             user = authenticate(request, email=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('view-profile')
+                return redirect('employee-edit-profile')
             else:
                 return HttpResponse(
                     "Your account has not been activated, kindly check your email for the verification code")
         else:
             return HttpResponse("You do not have an account, kindly register to have an account with us")
 
-    return render(request, "login.html")
+    return render(request, "signin.html")
 
 
 def blog(request):
