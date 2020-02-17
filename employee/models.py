@@ -54,7 +54,7 @@ class EmployeeExperience(models.Model):
     position = models.CharField(max_length=500)
     description = models.TextField()
     start_date = models.DateField()
-    end_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
     current_job = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
