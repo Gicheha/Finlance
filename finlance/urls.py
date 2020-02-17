@@ -19,6 +19,8 @@ from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls.static import static
 
+from indexapp import views
+
 
 urlpatterns = [
     url(r'', include('indexapp.urls')),
