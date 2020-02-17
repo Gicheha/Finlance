@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from users.views import signup
 from employee.forms import *
 from employee.db_ops import *
+from employee.models import *
 from indexapp.constants import INDUSTRY_CATEGORIES, EMPLOYMENT_TYPES, COMPANY_SIZES
 
 
@@ -122,8 +123,21 @@ def update_language(request):
 
 @login_required()
 def view_profile(request):
+    current_user = EmployeeProfile.objects.get(email=request.user)
 
-    return render(request, "view-profile.html", {'name': request.user.email})
+    values = {
+        'education': get_education(request.user),
+        'experience': get_experience(request.user),
+        'languages': get_languages(request.user),
+        'resume': get_resume(request.user)
+    }
+
+    context = {
+        'user': current_user,
+        'values': values
+    }
+
+    return render(request, "profile.html", context )
 
 
 @login_required()

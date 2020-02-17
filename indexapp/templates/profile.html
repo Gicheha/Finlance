@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Edit Your Profile</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+  h2{
+    color: #0b3364;
+  }
+</style>
+
+<section class="ftco-section" style="background-color: rgb(204, 223, 255);">
+  <div class="container">
+    <div classnamename="row">
+      <div class="col-md-12 col-lg-8">
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Personal details</h1>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-12 col-lg-12 mb-5" >
+        <form class="p-5 bg-white" style="border-radius:25px;">
+          <div class="row form-group">
+            <div class="col-md-4 mb-3 mb-md-0">
+              <img src="" width="150px" height="150px" alt="profile pic">
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+              <label class="font-weight-bold">First name</label>
+              <p>{{ user.first_name }}</p>
+              <label class="font-weight-bold">Last name</label>
+              <p>{{ user.last_name }}</p>
+              <label class="font-weight-bold">National ID</label>
+              <p>{{ user.id_number}}</p>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+              <label class="font-weight-bold">Email</label>
+              <p>{{ user.email}}</p>
+              <label class="font-weight-bold">City</label>
+              <p>{{ user.city }}</p>
+              <label class="font-weight-bold">Country</label>
+              <p>{{ user.country }}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Resume</h1>
+      </div>
+    </div>
+    <div class="row" style="border-radius:25px;">
+      <div class="col-md-12 col-lg-12 mb-5">
+        {% for exp in values.experience %}
+          <form class="p-5 bg-white" style="border-radius:25px;">
+            <h2>Experience</h2>
+            <div>
+              <h3>{{ exp.company }}</h3>
+              <div class="row form-group">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" >Position</label>
+                  <p>{{ exp.position }}</p>
+                  <label class="font-weight-bold" >Job Type</label>
+                  <p>{{ exp.job_type }}</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" >Company</label>
+                  <p>{{ exp.company }}</p>
+                  <label class="font-weight-bold" >Company size</label>
+                  <p>{{ exp.company_size }}</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" >Company homepage</label>
+                  <p>
+                    <a href="{{ exp.company_homepage}}">{{ exp.company_homepage }}</a>
+                  </p>
+                  <label class="font-weight-bold" >Industry</label>
+                  <p>{{ exp.industry }}</p>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" >From</label>
+                  <p>{{ exp.start_date }}</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold" >To</label>
+                  <p>{{ exp.end_date }}</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <label class="font-weight-bold">Current Job</label>
+                  <p>{{ exp.current_job }}</p>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <h4>Job Description</h4>
+                  <p>{{ exp.description }}</p>
+                </div>
+              </div>
+            </div>
+            <hr/>
+          </form>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 mb-5">
+        {% for edu in values.education%}
+        <form class="p-5 bg-white" style="border-radius:25px;">
+          <h2>Education</h2>
+          <div>
+            <h3>{{ edu.institution }}</h3>
+            <div class="row form-group">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <label class="font-weight-bold" >Field Of Study</label>
+                <p>{{ edu.study_field }}</p>
+              </div>
+              <div class="col-md-4 mb-3 mb-md-0">
+                <label class="font-weight-bold" >School</label>
+                <p>{{ edu.institution }}</p>
+              </div>
+              <div class="col-md-4 mb-3 mb-md-0"><label class="font-weight-bold" >Certification</label>
+                <p>{{ edu.certification }}</p>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <label class="font-weight-bold" >From</label>
+                <p>{{ edu.start_date }}</p>
+              </div>
+              <div class="col-md-4 mb-3 mb-md-0">
+                <label class="font-weight-bold" >To</label>
+                <p>{{ edu.end_date }}</p>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </form>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 mb-5">
+        <form class="p-5 bg-white" style="border-radius:25px;">
+          <div>
+            <h2>Additional Information</h2>
+            <div class="col-md-4 mb-3 mb-md-0">
+              <h4>Resume</h4>
+              <iframe src="https://docs.google.com/viewer?url=https://sumanbogati.github.io/tiny.pdf&embedded=true" frameborder="0" height="500px" width="100%"></iframe>
+            </div>
+            <hr />
+            <div class="row form-group">
+              <div class="col-md-12">
+                <h4 class="profile">Cover letter</h4>
+                <p>uggiuguigui</p>
+              </div>
+              <hr />
+              <div class="col-md-12 mb-3 mb-md-0">
+                <h4 class="profile">Languages</h4>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Language</th>
+                      <th>Proficiency</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>english</td>
+                      <td>fluent</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 mb-5">
+        <form class="p-5 bg-white" style="border-radius:25px;">
+          <div>
+            <h4 class="profile">My Interests</h4>
+            <div class="row form-group">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <label class="font-weight-bold" >Industry</label>
+                <p>IT</p>
+                <label class="font-weight-bold" >Job Type</label>
+                <p>Full time</p>
+                <label class="font-weight-bold" >I'm willing to relocate</label>
+                <p>Yes</p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock%}

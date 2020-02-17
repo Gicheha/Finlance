@@ -15,3 +15,6 @@ def get_skills(user):
 
 def get_languages(user):
     return EmployeeLanguage.objects.filter(user=user)
+
+def get_resume(user):
+    return EmployeeResume.objects.filter(user=user)
