@@ -1,10 +1,12 @@
 from django.db import models
-from users.models import User
+from django.utils import timezone
+
 from ckeditor.fields import RichTextField
 from autoslug import AutoSlugField
 from indexapp.constants import *
-from django.utils import timezone
 
+from users.models import User
+from employee.models import *
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -39,6 +41,13 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+class ShortList(models.Model):
+    job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
+    employee_id = models.ForeignKey(EmployeeProfile, on_delete=models.CASCADE)
+
+
+
 
 
 
