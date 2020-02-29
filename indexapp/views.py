@@ -35,7 +35,10 @@ def sign_in(request):
             user = authenticate(request, email=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('employee-edit-profile')
+                if(user.user_type == 'employee'):
+                    return redirect('employee-edit-profile')
+                if(user.user_type == 'customer'):
+                    return redirect('customer_home')
             else:
                 return HttpResponse(
                     "Your account has not been activated, kindly check your email for the verification code")

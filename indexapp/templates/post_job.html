@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Edit Your Profile</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ftco-section" style="background-color: rgb(204, 223, 255);">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8 mb-5">
+        <form class="p-5 bg-white" method="post" action="{% url 'new-job' %}">
+          {% csrf_token %}
+          <div class="row form-group">
+            <h2>New Job</h2>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0"><label class="font-weight-bold">Job Title<span class="bold">*</span></label>
+              {{form.title}}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Location<span class="bold">*</span></label>
+              {{form.job_location}}
+            </div>
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Job Level</label>
+              {{form.job_level}}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Date Posted<span class="bold">*</span></label>
+              {{form.date_posted}}
+            </div>
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Application Deadline<span class="bold">*</span></label>
+              {{form.valid_through}}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Job Type<span class="bold">*</span></label>
+              {{form.employment_type}}
+            </div>
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Category<span class="bold">*</span></label>
+              {{form.category}}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Experience </label>
+              {{form.experience}}
+            </div>
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Education Level</label>
+              {{form.education_level}}
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Min salary </label>
+              {{form.min_salary}}
+            </div>
+            <div class="col-md-6 mb-3 mb-md-0"><label class="font-weight-bold">Max salary</label>
+              {{form.max_salary}}
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <h3>Job Description<span class="bold">*</span></h3>
+            </div>
+            <div class="col-md-12 mb-3 mb-md-0">
+              {{form.media}}
+              {{form.description}}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-12"><input type="submit" class="btn btn-primary  py-2 px-5" value="Post"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

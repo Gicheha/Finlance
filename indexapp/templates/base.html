@@ -51,7 +51,7 @@
                                            <li><a href="#">home</a></li>
                                            <li><a href="#">About Us</a></li>
                                            <li><a href="#">Contact</a></li>
-                                           <li><a href="{% url 'signin' %}">Expert Login</a></li>
+                                           <li><a href="{% url 'signin' %}">Login</a></li>
                                        </ul>
                                      {% endif %}
                                      {% if request.user.user_type == 'employee' %}
@@ -62,10 +62,10 @@
                                         <li><a href="{% url 'logout' %}">Logout</a></li>
                                       </ul>
                                      {% endif %}
-                                     {% if request.user.user_type == 'employer' %}
+                                     {% if request.user.user_type == 'customer' %}
                                       <ul id="navigation">
                                         <li><a href="#">Home</a></li>
-                                        <li><a href="#">View Profile</a></li>
+                                        <li><a href="#">Post a Job</a></li>
                                         <li><a href="#">Edit Profile</a></li>
                                         <li><a href="{% url 'logout' %}">Logout</a></li>
                                       </ul>
