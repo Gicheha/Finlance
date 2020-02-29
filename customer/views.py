@@ -35,9 +35,9 @@ def new_job(request):
             form.save(commit=False)
             form.hiring_organization = hiring_organization
             form.save()
-        return render(request, "templates/post_job.html", {'form': form})
+        return render(request, "post_job.html", {'form': form})
     form = JobForm()
-    return render(request, "templates/post_job.html", {'form': form})
+    return render(request, "post_job.html", {'form': form})
 
 
 def view_job(request, slug):

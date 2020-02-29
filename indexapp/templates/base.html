@@ -83,12 +83,12 @@
                                        <a class="boxed-btn3" href="#">Post a Job</a>
                                    </div>
                                  {% endif %}
-                                 {% if request.user.user_type == 'employer' %}
+                                 {% if request.user.user_type == 'customer' %}
                                    <div class="phone_num d-none d-xl-block">
                                        <a href="#">View Candidates</a>
                                    </div>
                                    <div class="d-none d-lg-block">
-                                       <a class="boxed-btn3" href="#">Post Request</a>
+                                       <a class="boxed-btn3" href="{% url 'new-job' %}">Post Request</a>
                                    </div>
                                  {% endif %}
                                  {% if request.user.user_type == 'employee' %}
