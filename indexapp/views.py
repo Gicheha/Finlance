@@ -17,7 +17,7 @@ def index(request):
 def jobs(request):
     jobs = paginate(get_jobs(), request.GET.get('page', 1))
     context = {'jobs': jobs, 'categories': INDUSTRY_CATEGORIES[1:]}
-    return render(request, "job-listings.html", context)
+    return render(request, "jobs.html", context)
 
 
 def single_job(request, slug):

@@ -21,6 +21,9 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.business_name
+    
+    def __unicode__(self):
+        return self.id
 
 
 class Job(models.Model):
@@ -45,12 +48,5 @@ class Job(models.Model):
 class ShortList(models.Model):
     job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
     employee_id = models.ForeignKey(EmployeeProfile, on_delete=models.CASCADE)
-
-
-
-
-
-
-
 
 

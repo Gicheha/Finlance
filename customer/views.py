@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.forms.models import inlineformset_factory
 from users.views import signup
-from customer.forms import *
+from customer.forms import JobForm,SignUpForm,UpdateCustomer
+from customer.models import *
 
 @login_required()
 def customer_home(request):
@@ -24,17 +26,11 @@ def update_customer(request):
 
 @login_required()
 def new_job(request):
-    hiring_organization = Customer.objects.last()
-    hiring_organization.id = 22
-    hiring_organization.pk = 22
-
     if request.method == 'POST':
         form = JobForm(request.POST)
-
         if form.is_valid():
-            form.save(commit=False)
-            form.hiring_organization = hiring_organization
             form.save()
+
         return render(request, "post_job.html", {'form': form})
     form = JobForm()
     return render(request, "post_job.html", {'form': form})
@@ -63,7 +59,6 @@ def signup_form(request):
 
     form = SignUpForm()
     return render(request, "templates/employer-signup.html", {'form': form})
-
 
 def signup_employer(request):
     form = SignUpForm()

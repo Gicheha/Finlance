@@ -4,6 +4,10 @@ from customer.models import *
 from indexapp.constants import COMPANY_SIZES
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class RichEditor(forms.Form):
     content = forms.CharField(widget=CKEditorWidget(attrs={'class':'form-control'}))
 
@@ -65,7 +69,25 @@ class UpdateCustomer(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        exclude = ['hiring_organization']
+        fields = ['hiring_organization', 
+                    'title',
+                    'job_location',
+                    'job_level',
+                    'date_posted',
+                    'valid_through',
+                    'employment_type',
+                    'category',
+                    'experience',
+                    'education_level',
+                    'max_salary',
+                    'min_salary',
+                    'description'
+                ]
+
+        widgets = {
+            'date_posted' : DateInput(),
+            'valid_through' : DateInput()
+        }
 
     def __init__(self, *args, **kwargs):
         super(JobForm, self).__init__(*args, **kwargs)
@@ -73,5 +95,13 @@ class JobForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
+        self.fields['hiring_organization'].widget.attrs['placeholder'] = 'hiring organization'
         self.fields['title'].widget.attrs['placeholder'] = 'e.g Finance Analyst'
-        self.fields['experience'].widget.attrs['placeholder'] = 'Experience in years'
+        self.fields['job_location'].widget.attrs['placeholder'] = 'Job  Location'
+        self.fields['job_level'].widget.attrs['placeholder'] = 'Job Level'
+        self.fields['date_posted'].widget.attrs['placeholder'] = 'Date Posted'
+        self.fields['valid_through'].widget.attrs['placeholder'] = 'Application Deadline'
+        self.fields['employment_type'].widget.attrs['placeholder'] = 'Employment Type'
+        self.fields['category'].widget.attrs['placeholder'] = 'Job Category'
+        self.fields['experience'].widget.attrs['placeholder'] = 'Required Experience'
+        self.fields['education_level'].widget.attrs['placeholder'] = 'Required Education'
