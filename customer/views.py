@@ -30,15 +30,11 @@ def new_job(request):
         form = JobForm(request.POST)
         if form.is_valid():
             form.save()
-
+            return redirect('myjobs')
         return render(request, "post_job.html", {'form': form})
     form = JobForm()
     return render(request, "post_job.html", {'form': form})
-
-
-def view_job(request, slug):
-    return render(request, "templates/view-job.html")
-
+\
 
 def signup_form(request):
     if request.method == 'POST':
@@ -59,6 +55,19 @@ def signup_form(request):
 
     form = SignUpForm()
     return render(request, "templates/employer-signup.html", {'form': form})
+
+
+@login_required
+def myjobs(request):
+    customer = Customer.objects.get(user = request.user)
+    jobs = Job.objects.filter(hiring_organization = customer)
+    return render(request, 'myjobs.html', {'jobs' : jobs})
+
+
+def view_job(request, slug):
+    job =Job.objects.get(slug = slug)
+    return render(request, 'job.html', {'job': job})
+
 
 def signup_employer(request):
     form = SignUpForm()

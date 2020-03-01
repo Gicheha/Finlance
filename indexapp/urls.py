@@ -8,7 +8,5 @@ urlpatterns = [
     path('blog/', blog, name='blog'),
     path('logout/', logout_view, name='logout'),
     path('contacts/', contacts, name='contacts'),
-    path('jobs/', jobs, name='jobs'),
-    path('job/<str:slug>', single_job, name='job-post'),
     path('about/', about, name='about'),
 ]
