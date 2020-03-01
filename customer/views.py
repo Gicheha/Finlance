@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
+
 from users.views import signup
 from customer.forms import JobForm,SignUpForm,UpdateCustomer
 from customer.models import *
@@ -67,6 +68,15 @@ def myjobs(request):
 def view_job(request, slug):
     job =Job.objects.get(slug = slug)
     return render(request, 'job.html', {'job': job})
+
+
+def short_list(request, slug):
+    employees = EmployeeProfile.objects.all()
+    context = {
+        'employees' : employees,
+        'slug' : slug
+    }
+    return render(request, 'candidates.html', context=context)
 
 
 def signup_employer(request):

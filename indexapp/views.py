@@ -38,7 +38,7 @@ def sign_in(request):
                 if(user.user_type == 'employee'):
                     return redirect('employee-edit-profile')
                 if(user.user_type == 'customer'):
-                    return redirect('dashboard')
+                    return redirect('index')
             else:
                 return HttpResponse(
                     "Your account has not been activated, kindly check your email for the verification code")
