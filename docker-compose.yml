@@ -3,16 +3,29 @@ services:
   nginx:
     image: nginx:latest
     container_name: ng01
-    network_mode: host
+    networks:
+      - app-network
     ports:
-      - "8181:8181"
+      - "8000:8000"
     depends_on:
       - web
+    volumes: 
+      - .:/src
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./static:/static
 
   web:
     build: .
     container_name: dg01
-    network_mode: host
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && gunicorn finlance.wsgi -b 0.0.0.0:8181"
+    networks: 
+      - app-network
+    command: bash -c "python manage.py collectstatic --no-input && python manage.py makemigrations && python manage.py migrate && gunicorn finlance.wsgi -b 0.0.0.0:8000"
     expose:
-      - "8181"
+      - "8000"
+    volumes: 
+      - .:/src
+      - ./static:/static
+
+networks: 
+  app-network:
+    driver: bridge
